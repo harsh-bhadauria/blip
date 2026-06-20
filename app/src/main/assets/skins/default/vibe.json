@@ -1,0 +1,18 @@
+{
+  "idle": [],
+  "light": [
+    "hey... {task} is still on the list.",
+    "just a heads up. {task}."
+  ],
+  "busy": [
+    "psst. {task}. still waiting.",
+    "you said you'd do {task}...",
+    "{task}. just saying.",
+    "hey. {task}. remember?"
+  ],
+  "overwhelmed": [
+    "okay so {task} has been sitting there for a while.",
+    "{task}. please.",
+    "i'm not mad. just... {task}. come on."
+  ]
+}
