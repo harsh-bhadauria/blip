@@ -40,7 +40,7 @@ Blip is rendered using a custom AGSL shader with simplex noise, giving it an org
 
 ### Setup
 ```bash
-git clone https://github.com/yourusername/blip.git
+git clone https://github.com/harsh-bhadauria/blip.git
 ```
 
 Open in Android Studio, let Gradle sync, and run on a physical device or emulator.
