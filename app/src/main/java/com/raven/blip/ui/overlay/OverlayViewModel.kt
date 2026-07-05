@@ -7,6 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.raven.blip.data.model.Task
+import com.raven.blip.domain.model.BlobVisualState
 import com.raven.blip.domain.model.OverlayState
 import com.raven.blip.domain.repository.SettingsRepository
 import com.raven.blip.domain.repository.SkinRepository
@@ -30,6 +31,14 @@ class OverlayViewModel(
 
     val isAddingTask get() = overlayState == OverlayState.ADDING_TASK
     val isPanelVisible get() = overlayState == OverlayState.EXPANDED || isAddingTask
+
+    /** Visual/emotional state for the blob renderer, derived from UI state. */
+    val blobVisualState: BlobVisualState get() = when {
+        overlayState == OverlayState.BUBBLE -> BlobVisualState.SPEAKING
+        overlayState == OverlayState.ADDING_TASK -> BlobVisualState.THINKING
+        overlayState == OverlayState.EXPANDED -> BlobVisualState.LISTENING
+        else -> BlobVisualState.IDLE
+    }
 
     var activeBubbleTask by mutableStateOf<Task?>(null)
         private set

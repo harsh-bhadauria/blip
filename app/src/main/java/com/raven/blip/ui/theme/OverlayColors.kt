@@ -2,7 +2,7 @@ package com.raven.blip.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val BlobColor      = Color(0xFFB7E8EB)
+val BlobColor      = Color(0xFFF0F2FA) // soft white with slight cool tint (fallback)
 val PanelBg        = Color(0xFF1E1E2E)
 val TextPrimary    = Color(0xFFCDD6F4)
 val TextMuted      = Color(0xFF6C7086)
