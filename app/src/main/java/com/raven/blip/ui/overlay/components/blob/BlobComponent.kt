@@ -97,6 +97,12 @@ fun BlipBlob(viewModel: OverlayViewModel, onClick: () -> Unit, onLongClick: () -
         }
     }
 
+    LaunchedEffect(viewModel.testEventTrigger) {
+        if (viewModel.testEventTrigger > 0) {
+            eventController.triggerRandomEvent(viewModel.testEventTriggerId)
+        }
+    }
+
     // morphOut animates the shader blob away when an event is active
     val morphOut by animateFloatAsState(
         targetValue = if (activeEvent != null) 1f else 0f,

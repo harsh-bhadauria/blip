@@ -29,6 +29,17 @@ class OverlayViewModel(
     var completionTrigger by mutableIntStateOf(0)
         private set
 
+    var testEventTrigger by mutableIntStateOf(0)
+        private set
+
+    var testEventTriggerId by mutableStateOf<String?>(null)
+        private set
+
+    fun triggerTestEvent(eventId: String? = null) {
+        testEventTriggerId = eventId
+        testEventTrigger++
+    }
+
     val isAddingTask get() = overlayState == OverlayState.ADDING_TASK
     val isPanelVisible get() = overlayState == OverlayState.EXPANDED || isAddingTask
 

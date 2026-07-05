@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -228,6 +230,31 @@ fun SettingsTab(
                     modifier = Modifier.fillMaxWidth().height(52.dp)
                 ) {
                     Text("Force Bubble", fontWeight = FontWeight.Bold)
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text("Force Events", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+                Spacer(modifier = Modifier.height(8.dp))
+                LazyRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(com.raven.blip.ui.overlay.components.blob.ALL_EVENTS) { event ->
+                        OutlinedButton(
+                            onClick = {
+                                val intent = Intent(context, OverlayService::class.java).apply {
+                                    action = OverlayService.ACTION_TEST_EVENT
+                                    putExtra("EVENT_ID", event.id)
+                                }
+                                context.startService(intent)
+                            },
+                            shape = RoundedCornerShape(16.dp),
+                            modifier = Modifier.height(52.dp)
+                        ) {
+                            Text(event.id.replaceFirstChar { it.uppercase() }, fontWeight = FontWeight.Bold)
+                        }
+                    }
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))

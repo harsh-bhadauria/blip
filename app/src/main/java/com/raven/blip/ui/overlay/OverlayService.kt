@@ -35,6 +35,7 @@ class OverlayService : Service() {
     companion object {
         var isRunning = false
         const val ACTION_SHOW_BUBBLE = "com.raven.blip.ACTION_SHOW_BUBBLE"
+        const val ACTION_TEST_EVENT = "com.raven.blip.ACTION_TEST_EVENT"
         private const val CHANNEL_ID = "blip_overlay_channel"
         private const val NOTIFICATION_ID = 1
         private const val BLOB_TOTAL_SIZE_DP = 52
@@ -70,6 +71,9 @@ class OverlayService : Service() {
         if (intent?.action == ACTION_SHOW_BUBBLE) {
             viewModel?.showNextBubble()
             scheduleNextBubble(this)
+        } else if (intent?.action == ACTION_TEST_EVENT) {
+            val eventId = intent.getStringExtra("EVENT_ID")
+            viewModel?.triggerTestEvent(eventId)
         }
         return START_STICKY
     }

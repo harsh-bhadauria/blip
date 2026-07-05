@@ -57,6 +57,26 @@ class BlobEventController {
         launchEvent(celebrateEvent)
     }
 
+    /** Force-trigger an event for testing purposes. If eventId is null, picks randomly. */
+    fun triggerRandomEvent(eventId: String? = null) {
+        if (activeEvent != null) return // don't interrupt
+
+        if (eventId != null) {
+            val event = ALL_EVENTS.find { it.id == eventId }
+            if (event != null) {
+                launchEvent(event)
+                return
+            }
+        }
+
+        // Filter eligible events, but ignore urgency for testing so we always get something
+        val eligible = ALL_EVENTS.filter { it.id != "celebrate" }
+        if (eligible.isEmpty()) return
+
+        val event = eligible.random()
+        launchEvent(event)
+    }
+
     /** Tap-to-dismiss: end the current event early. */
     fun dismissEvent() {
         activeEvent = null
